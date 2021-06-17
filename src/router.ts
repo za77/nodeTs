@@ -1,6 +1,8 @@
+import { Router } from "express";
 import user_router from "./components/user/user.router";
 // router registration 
-export default  [
-    user_router
+const route : any = [
+    user_router 
     ];
 
+export default  route;
