@@ -1,9 +1,10 @@
 import express from "express";
 import router from './router';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
 
 const app = express();
-
+app.use(bodyParser.json());
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/case_study', {
 useNewUrlParser: true
