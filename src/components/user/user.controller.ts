@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
-const userModel  =  require("../../schema/user.schema");
+var userModel  =  require("../../schema/user.schema");
 
 export default {
-
+//? Have to find a way to auto complete the mongoose methods 
 fineAll: (async (req :any,res:any) =>{
+    userModel  = mongoose.model("user");
     var user = await userModel.find();
     return res.send(user);
 }),
