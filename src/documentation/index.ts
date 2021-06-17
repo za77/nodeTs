@@ -1,4 +1,4 @@
-import { response } from "express";
+
 
 export default{
     title:"Swagger testing api",
@@ -10,15 +10,6 @@ export default{
   basePath: "/api/vi",
   schemes: ["http"],
   paths: {
-    "/user":{
-        get:{
-            tags:["user"],
-            description:"Get user information from server",
-            produces: ['application/json'],
-            parameters:[require('./request/user.request')],
-            response: require('./request/user.request')
-        }
-    }
-
+    "/user": require("./path/user/user_route")
     }
 }

@@ -1,8 +1,7 @@
 /**
  * @file This file is used to declare post user object on swagger document.
  */
- module.exports = [
-    {
+ module.exports = {
       in: 'body',
       name: 'body',
       description: 'API v1 parameters body',
@@ -26,4 +25,4 @@
         }
       }
     }
-  ]
+  
