@@ -9,6 +9,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/case_study', {
 useNewUrlParser: true
 }).then(() => {
+   require("./schema/user.schema");
   console.log("Successfully connected to the database");
 }).catch(err => {
   console.log('Could not connect to the database.', err);
@@ -17,10 +18,9 @@ useNewUrlParser: true
 
 //! note the express app instance have to be created only once in the app life_cycle
 
-//? You have to handle request and validate the headers 
-//? And add the security check for the cross origin policy
+//? You have to handle request and validate the headers and allow cross origin
 //? after prepare single req and respond object with all params 
-//? add authentication middle ware
+//? add authentication middle ware , override authentication middle ware
 //? there after only it will move to the controller part
 
 //@ you have to keep write the code when you want you can add extra layer or improve the architecture 
@@ -32,6 +32,27 @@ var options = {
   explorer: true
 };
 var  document  = JSON.stringify(swaggerDocument);
+
+app.use(function (req, res, next) {
+
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+
+  // Pass to next layer of middleware
+  next();
+});
+var doc = require("./swagger.json");
+// app.use('/api/v1/test-documentation', swaggerUi.serve, swaggerUi.setup(doc, options));
 app.use('/api/v1/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 // app.use('/api/v1/documentation',(req,res)=>{
 //     return  res.set({ 'Content-Type': 'application/json; charset=utf-8' })
@@ -39,6 +60,11 @@ app.use('/api/v1/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocumen
 //      .send(document);
 //  });
 import userRouter from "./components/user/user.router";
+var middleware = (req :any,res:any)=>{
+  console.log("only middle ware called");
+}
+
+// app.use(middleware)
 app.use('/api/v1/user',userRouter);
 
 // app.use(routeMap);

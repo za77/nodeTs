@@ -1,15 +1,27 @@
 
 
 export default{
-    title:"Swagger testing api",
+  title:"Swagger testing api",
   swagger: '2.0',
   info: {
-    description: 'Testing API documentation',
+    description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters.",
+    version: "1.0.0",
+    title: "Swagger Petstore",
+    termsOfService: "http://swagger.io/terms/",
+    contact: {
+      "email": "apiteam@swagger.io"
+    },
   },
-  host: `http://localhost/1000`,
-  basePath: "/api/vi",
-  schemes: ["http"],
+  produces: ["application/xml","application/json"],
+  host: `localhost:1000`,
+  basePath: "/api/v1",
+  schemes : [
+    "https",
+    "http"
+  ],
   paths: {
-    "/user": require("./path/user/user_route")
+    "/user": require("./path/user/user_route"),
+    "/user/{id}": require("./path/user/user_id_route"),
+    "/role": require("./path/role/role_route")
     }
 }

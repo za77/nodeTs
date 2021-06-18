@@ -1,0 +1,3 @@
+//? What will be load on project First time start bootstrap?
+//? After project load how api call working .. is all bootstrap state still there ?
+//? So on app first time bootstrap we can set value of the class

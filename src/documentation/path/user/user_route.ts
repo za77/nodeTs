@@ -1,9 +1,12 @@
 module.exports = {
     get:{
         tags:["user"],
-        description:"Get user information from server",
+        summary: "Add a new pet to the store",
+        operationId: "addPet",
+        description:"Get user list",
         produces: ['application/json'],
-        parameters:[require('../../request/user.request')],
-        response: require('../../request/user.request')
+        consumes: ['application/json'],
+        parameters:[],
+        responses: require("../response")
     }
 }
