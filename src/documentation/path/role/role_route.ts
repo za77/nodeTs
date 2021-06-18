@@ -5,14 +5,14 @@ module.exports = {
         produces:["application/json"],
         description:"Get Role information from server",
         parameters:[require('../../request/role.request')],
-        response: require('../../request/role.request')
+        responses: require("../response")
     },
     put:{
         tags:["role"],
         description:"Get Role information from server",
         produces: ['application/json'],
         parameters:[require('../../request/role.request')],
-        response: require('../../request/role.request')
+        responses: require("../response")
 
     },
     post:{
@@ -20,7 +20,7 @@ module.exports = {
         description:"Create Role information from server",
         produces: ['application/json'],
         parameters:[require('../../request/role.request')],
-        response: require('../../request/role.request')
+        responses: require("../response")
 
     },
 }
