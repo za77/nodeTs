@@ -23,7 +23,7 @@ on: push
 jobs:
   build:
     # Name the Job
-    name: Lint Code Base
+    name: Unit_test
     # Set the agent to run on
     runs-on: windows-latest
 
@@ -45,6 +45,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - run: npm install
+      - run: npm run test
           
         env:
           VALIDATE_ALL_CODEBASE: false
