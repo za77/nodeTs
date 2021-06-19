@@ -69,3 +69,4 @@ app.use('/api/v1/user',userRouter);
 
 // app.use(routeMap);
 app.listen(1000,()=>console.log("Server running"));
+ module.exports = app;

@@ -20,8 +20,8 @@ export default{
     "http"
   ],
   paths: {
-    "/user": require("./path/user/user_route"),
-    "/user/{id}": require("./path/user/user_id_route"),
-    "/role": require("./path/role/role_route")
+    "/user": require("./module/user/user_route"),
+    "/user/{id}": require("./module/user/user_id_route"),
+    "/role": require("./module/role/role_route")
     }
 }

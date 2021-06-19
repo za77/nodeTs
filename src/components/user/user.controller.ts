@@ -1,19 +1,26 @@
 import mongoose from "mongoose";
 var userModel  =  require("../../schema/user.schema");
+import {Request , Response} from "express";
 
 export default {
+
+  sum:((a:number,b:number)=>{
+    return a+b;
+    }),
+
 //? Have to find a way to auto complete the mongoose methods 
-fineAll: (async (req :any,res:any) =>{
+fineAll: (async (req :Request,res:Response) =>{
   console.log("request");
     userModel  = mongoose.model("user");
     var user = await userModel.find();
     return res.send(user);
 }),
-findOne: (async (req :any,res:any) =>{
+findOne: (async (req :Request,res:Response) =>{
      var user = await userModel.findById("60cb2b59ee5f50501c20033f");
      return res.send(user);
 }),
-create:(async (req:any,res:any)=>{
+
+create:(async (req:Request,res:Response)=>{
     // var userModel = mongoose.model("user");
     const {body} = req;
     const user = new userModel({
@@ -30,12 +37,13 @@ create:(async (req:any,res:any)=>{
       }
     
 }),
-update:((req:any,res:any)=>{
+update:((req:Request,res:Response)=>{
     return res.send({"message":"re run the project code"});
 }),
-remove:((req:any,res:any)=>{
+remove:((req:Request,res:Response)=>{
     return res.send({"message":"re run the project code"});
-})
+}),
+
 
 
 }
