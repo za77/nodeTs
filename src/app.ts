@@ -5,17 +5,18 @@ import bodyParser from 'body-parser';
 
 const app = express();
 app.use(bodyParser.json());
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/case_study', {
-useNewUrlParser: true
-}).then(() => {
-   require("./schema/user.schema");
-  console.log("Successfully connected to the database");
-}).catch(err => {
-  console.log('Could not connect to the database.', err);
-  process.exit();
-});
+// mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://mongo:27017/case_study', {
+// useNewUrlParser: true
+// }).then(() => {
+//    require("./schema/user.schema");
+//   console.log("Successfully connected to the database");
+// }).catch(err => {
+//   console.log('Could not connect to the database.', err);
+//   process.exit();
+// });
 
+//! 20-06-2021 learn about docker container and automatic deployment to do work much better
 //! note the express app instance have to be created only once in the app life_cycle
 
 //? You have to handle request and validate the headers and allow cross origin
@@ -65,8 +66,11 @@ var middleware = (req :any,res:any)=>{
 }
 
 // app.use(middleware)
+app.use('/api/v1/test',(req,res)=>{
+res.send("testing app");
+});
 app.use('/api/v1/user',userRouter);
 
 // app.use(routeMap);
-app.listen(1000,()=>console.log("Server running"));
- module.exports = app;
+app.listen(80,()=>console.log("Server running 80 "));
+//  module.exports = app;
