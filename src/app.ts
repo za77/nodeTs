@@ -5,16 +5,16 @@ import bodyParser from 'body-parser';
 
 const app = express();
 app.use(bodyParser.json());
-// mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://mongo:27017/case_study', {
-// useNewUrlParser: true
-// }).then(() => {
-//    require("./schema/user.schema");
-//   console.log("Successfully connected to the database");
-// }).catch(err => {
-//   console.log('Could not connect to the database.', err);
-//   process.exit();
-// });
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://127.0.0.1:27017/case_study', {
+useNewUrlParser: true
+}).then(() => {
+   require("./schema/user.schema");
+  console.log("Successfully connected to the database");
+}).catch(err => {
+  console.log('Could not connect to the database.', err);
+  process.exit();
+});
 
 //! 20-06-2021 learn about docker container and automatic deployment to do work much better
 //! note the express app instance have to be created only once in the app life_cycle
@@ -72,5 +72,5 @@ res.send("testing app");
 app.use('/api/v1/user',userRouter);
 
 // app.use(routeMap);
-app.listen(80,()=>console.log("Server running 80 "));
+app.listen(8080,()=>console.log("Server running 8080"));
 //  module.exports = app;

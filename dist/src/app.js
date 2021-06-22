@@ -62,5 +62,5 @@ app.use('/api/v1/test', function (req, res) {
 });
 app.use('/api/v1/user', user_router_1.default);
 // app.use(routeMap);
-app.listen(80, function () { return console.log("Server running"); });
+app.listen(8080, function () { return console.log("Server running 8080"); });
 //  module.exports = app;
