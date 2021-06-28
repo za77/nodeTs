@@ -5,6 +5,9 @@ import bodyParser from 'body-parser';
 
 const app = express();
 app.use(bodyParser.json());
+const ACCESS_TOKEN = "ACCESS_TOKEN";
+const REFRESH_TOKEN = "REFRESH_TOKEN";
+
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://127.0.0.1:27017/case_study', {
 useNewUrlParser: true
@@ -61,15 +64,46 @@ app.use('/api/v1/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocumen
 //      .send(document);
 //  });
 import userRouter from "./components/user/user.router";
+import authRouter from "./components/auth/auth.router";
+
 var middleware = (req :any,res:any)=>{
   console.log("only middle ware called");
 }
 
+import jwt from "jsonwebtoken";
 // app.use(middleware)
 app.use('/api/v1/test',(req,res)=>{
-res.send("testing app");
+
+let accessToken = jwt.sign(
+  { user: { id:"0", name:"Shiva" } },
+  ACCESS_TOKEN,
+  {
+    expiresIn: "60m",
+  }
+);
+res.send({token:accessToken});
 });
+
+app.use("/api/v1/refresh",async (req,res)=>{
+  
+    try {
+      
+      let refreshToken = jwt.sign(
+        { user: { _id:"0", username:"shiva" } },
+        REFRESH_TOKEN,{ expiresIn: "1d" }
+      );
+
+      return res.send({refresh:refreshToken});
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+
+
+});
+
 app.use('/api/v1/user',userRouter);
+app.use('/api/v1/auth',authRouter);
 
 // app.use(routeMap);
 app.listen(8080,()=>console.log("Server running 8080"));
