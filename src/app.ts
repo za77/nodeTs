@@ -92,8 +92,8 @@ app.use("/api/v1/refresh",async (req,res)=>{
         { user: { _id:"0", username:"shiva" } },
         REFRESH_TOKEN,{ expiresIn: "1d" }
       );
-
-      return res.send({refresh:refreshToken});
+      const payload = jwt.verify(refreshToken, REFRESH_TOKEN);
+      return res.send({refresh:refreshToken , payload :payload});
     } catch (error) {
       console.error(error);
       return;
