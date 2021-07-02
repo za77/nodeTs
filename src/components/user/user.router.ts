@@ -9,7 +9,6 @@ router.get("/:id",controller.findOne);
 router.put("/:id",controller.update);
 router.delete("/:id",controller.remove);
 
-
 export default router;
 
  

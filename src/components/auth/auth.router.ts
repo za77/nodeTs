@@ -4,4 +4,10 @@ import express from "express";
 var router = express.Router();
 
 router.post("/login",controller.login);
+router.post("/register",controller.login);
+router.post("/refresh",controller.login);
+router.post("/resend-otp",controller.login);
+router.post("/resend-email",controller.login);
+router.post("/logout",controller.login);
+
 export default router;
