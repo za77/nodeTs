@@ -37,6 +37,7 @@ var options = {
 };
 var  document  = JSON.stringify(swaggerDocument);
 
+//! find out to write a middleware at common single place
 app.use(function (req, res, next) {
 
   // Website you wish to allow to connect
@@ -58,52 +59,47 @@ app.use(function (req, res, next) {
 var doc = require("./swagger.json");
 // app.use('/api/v1/test-documentation', swaggerUi.serve, swaggerUi.setup(doc, options));
 app.use('/api/v1/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
-// app.use('/api/v1/documentation',(req,res)=>{
-//     return  res.set({ 'Content-Type': 'application/json; charset=utf-8' })
-//      .status(200)
-//      .send(document);
-//  });
+
 import userRouter from "./components/user/user.router";
 import authRouter from "./components/auth/auth.router";
 
-var middleware = (req :any,res:any)=>{
-  console.log("only middle ware called");
-}
+
 
 import jwt from "jsonwebtoken";
 // app.use(middleware)
-app.use('/api/v1/test',(req,res)=>{
 
-let accessToken = jwt.sign(
-  { user: { id:"0", name:"Shiva" } },
-  ACCESS_TOKEN,
-  {
-    expiresIn: "60m",
-  }
-);
-res.send({token:accessToken});
-});
+// app.use('/api/v1/test',(req,res)=>{
 
-app.use("/api/v1/refresh",async (req,res)=>{
+// let accessToken = jwt.sign(
+//   { user: { id:"0", name:"Shiva" } },
+//   ACCESS_TOKEN,
+//   {
+//     expiresIn: "60m",
+//   }
+// );
+// res.send({token:accessToken});
+// });
+
+// app.use("/api/v1/refresh",async (req,res)=>{
   
-    try {
+//     try {
       
-      let refreshToken = jwt.sign(
-        { user: { _id:"0", username:"shiva" } },
-        REFRESH_TOKEN,{ expiresIn: "1d" }
-      );
-      const payload = jwt.verify(refreshToken, REFRESH_TOKEN);
-      return res.send({refresh:refreshToken , payload :payload});
-    } catch (error) {
-      console.error(error);
-      return;
-    }
+//       let refreshToken = jwt.sign(
+//         { user: { _id:"0", username:"shiva" } },
+//         REFRESH_TOKEN,{ expiresIn: "1d" }
+//       );
+//       const payload = jwt.verify(refreshToken, REFRESH_TOKEN);
+//       return res.send({refresh:refreshToken , payload :payload});
+//     } catch (error) {
+//       console.error(error);
+//       return;
+//     }
 
 
-});
+// });
 
-app.use('/api/v1/user',userRouter);
-app.use('/api/v1/auth',authRouter);
+app.use('/api/v1/',userRouter);
+app.use('/api/v1/',authRouter);
 
 // app.use(routeMap);
 app.listen(8080,()=>console.log("Server running 8080"));
