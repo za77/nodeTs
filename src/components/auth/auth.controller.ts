@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import mongoose from "mongoose";
 var Schema  =  require("../../schema/role.schema");
 import AuthService from "../../services/auth.service";
-import { _login, _user } from "../../models/user";
+import { _login, _user ,_refresh } from "../../models/user";
 
 
 
@@ -40,7 +40,13 @@ login: (async (req :Request,res:Response) => {
     resendEmail : (()=>{
 
     }),
-    refresh : (()=>{
+    
+    refresh : (( req :Request , res : Response )=>{
+      //@ Auth Middleware
+      var body : _refresh = req.body;
+      var  authService = new AuthService();
+      //@ auth check validity of the refresh token and get the user id
+      var token = authService.accessToken({});
 
     })
 

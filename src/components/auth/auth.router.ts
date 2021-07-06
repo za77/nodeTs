@@ -4,8 +4,9 @@ import express from "express";
 var router = express.Router();
 
 router.post("/auth/login",controller.login);
-router.post("auth/register",controller.register);
 router.post("auth/refresh",controller.refresh);
+
+router.post("auth/register",controller.register);
 router.post("auth/resend-otp",controller.resendOtp);
 router.post("auth/resend-email",controller.resendEmail);
 router.post("auth/logout",controller.logout);

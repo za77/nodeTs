@@ -19,9 +19,17 @@ export default{
     "https",
     "http"
   ],
+
   paths: {
+    //users api
     "/user": require("./module/user/user_route"),
     "/user/{id}": require("./module/user/user_id_route"),
-    "/role": require("./module/role/role_route")
+    
+    //roles api 
+    "/role": require("./module/role/role_route"),
+   
+    //Authentication API request
+    "/auth": require("./module/role/role_route")
+
     }
 }

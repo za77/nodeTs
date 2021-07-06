@@ -62,6 +62,7 @@ app.use('/api/v1/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDocumen
 
 import userRouter from "./components/user/user.router";
 import authRouter from "./components/auth/auth.router";
+import tagRouter from "./components/tag/tag.router";
 
 
 
@@ -100,6 +101,8 @@ import jwt from "jsonwebtoken";
 
 app.use('/api/v1/',userRouter);
 app.use('/api/v1/',authRouter);
+app.use('/api/v1/tag/',tagRouter);
+
 
 // app.use(routeMap);
 app.listen(8080,()=>console.log("Server running 8080"));
