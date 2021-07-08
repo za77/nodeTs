@@ -99,7 +99,7 @@ import jwt from "jsonwebtoken";
 
 // });
 
-app.use('/api/v1/',userRouter);
+app.use('/api/v1/user',userRouter);
 app.use('/api/v1/',authRouter);
 app.use('/api/v1/tag/',tagRouter);
 
